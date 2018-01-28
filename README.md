@@ -1,1 +1,1 @@
-# binance-bot
+# binance-slack-bot
