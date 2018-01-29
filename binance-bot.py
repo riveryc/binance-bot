@@ -9,9 +9,9 @@ slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 bruno_id = None
 
 # binance information fetch
-quoteAsset = "BTC"
-apikey = "api-key"
-apisecret = "api-secret"
+quoteAsset = os.environ.get('quoteAsset')
+apikey = os.environ.get('apikey')
+apisecret = os.environ.get('apisecret')
 proxies = {
     'http': os.environ.get('http_proxy'),
     'https': os.environ.get('https_proxy')
@@ -60,7 +60,7 @@ def handle_command(command, channel):
         # Check the Symbol price
         result = client.get_symbol_ticker(symbol=command.upper()+quoteAsset)
         price_in_Dollar = float(result['price'])*float(BTCUSDT['price'])
-        response = "{0} vs BTC: {1}, about ${2}".format(command.upper(),result['price'],price_in_Dollar)
+        response = "<https://www.binance.com/trade.html?symbol="+command.upper()+quoteAsset+"|{0}> vs BTC: {1}, about ${2}".format(command.upper(),result['price'],price_in_Dollar)
     elif command.upper() == "BTC":
         # Check BTC's price vs USDT
         response = "BTC: ${0}".format(BTCUSDT['price'])

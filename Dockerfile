@@ -2,7 +2,10 @@ FROM python:3.6
 
 LABEL Author="River Yang (river.yang@outlook.com)"
 
-ENV SLACK_BOT_TOKEN="xoxb-305901762308-S7eXYBYuG3eZ4I7xiFLLx9Wc"
+ENV SLACK_BOT_TOKEN \
+    quoteAsset="BTC" \
+    apikey="apikey" \
+    apisecret="apisecret"
 RUN mkdir /workfolder
 
 COPY requirements.txt /workfolder/.
