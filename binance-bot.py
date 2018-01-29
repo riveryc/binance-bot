@@ -1,4 +1,4 @@
-import os, time, re
+import os, time, re, sys
 from binance.client import Client
 from slackclient import SlackClient
 
@@ -69,6 +69,7 @@ def handle_command(command, channel):
 
 
     # Sends the response back to the channel
+    sys.stdout.write("Received {0}, response: {1}".format(command, response))
     slack_client.api_call(
         "chat.postMessage",
         channel=channel,
@@ -77,7 +78,7 @@ def handle_command(command, channel):
 
 if __name__ == "__main__":
     if slack_client.rtm_connect(with_team_state=False):
-        print("Starter Bot connected and running!")
+        sys.stdout.write('Bot connected and running!')
         # Read bot's user ID by calling Web API method `auth.test`
         bruno_id = slack_client.api_call("auth.test")["user_id"]
         while True:
@@ -86,4 +87,4 @@ if __name__ == "__main__":
                 handle_command(command, channel)
             time.sleep(RTM_READ_DELAY)
     else:
-        print("Connection failed. Exception traceback printed above.")
+        sys.stdout.write("Connection failed. Exception traceback printed above.")
