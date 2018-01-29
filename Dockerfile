@@ -2,7 +2,7 @@ FROM python:3.6
 
 LABEL Author="River Yang (river.yang@outlook.com)"
 
-ENV SLACK_BOT_TOKEN \
+ENV SLACK_BOT_TOKEN="" \
     quoteAsset="BTC" \
     apikey="apikey" \
     apisecret="apisecret"
